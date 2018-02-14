@@ -4,11 +4,10 @@
              [2;3;7;0;3];
              [8;2;4;1;0]]
              *)
-let graph = 
-    let generate_graph n range = 
+let generate_graph ~range n = 
         let open Core_kernel in
-        List.to_list @@ List.init n (fun i -> List.to_list @@ List.init n (fun j -> if j = i then 0 else Random.int range)) in
-    generate_graph 8 10
+        List.to_list @@ List.init n (fun i -> List.to_list @@ List.init n (fun j -> if j = i then 0 else Random.int range))
+let graph = generate_graph 8 10
 let add_traffic l amount =
     (* Leave distance to itself unchanged and add random amount to other connections *)
     List.map (fun x -> if x = 0 then x else x + Random.int amount) l
@@ -46,11 +45,6 @@ let travelling_salesman g =
             paths in
     shortest_path
 let string_of_int_list l = 
-    String.concat ";" @@ List.map (string_of_int) l
-
-let () =
-    print_endline @@ string_of_int_list @@ travelling_salesman graph
-
-
+    String.concat ";" @@ List.map (string_of_int) l;;
 
 

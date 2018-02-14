@@ -1,6 +1,6 @@
 (executable
- ((name travelling_salesman)
-  (libraries (core_kernel))
+ ((name evaluate)
+  (libraries (core_kernel core_bench))
 ))
 
 
