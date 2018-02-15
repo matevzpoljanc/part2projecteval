@@ -6,7 +6,7 @@
              *)
 let generate_graph ~range n = 
         let open Core_kernel in
-        List.to_list @@ List.init n (fun i -> List.to_list @@ List.init n (fun j -> if j = i then 0 else Random.int range))
+        List.to_array @@ List.init n (fun i -> List.to_array @@ List.init n (fun j -> if j = i then 0 else Random.int range))
 let graph = generate_graph 8 10
 let add_traffic l amount =
     (* Leave distance to itself unchanged and add random amount to other connections *)
@@ -27,12 +27,12 @@ let rec permutations = function
     
 let generate_paths g =
     let open Core_kernel in
-    permutations @@ List.range 0 @@ List.length g
+    permutations @@ List.range 0 @@ Array.length g
 
 let rec path_length = function
     | [] -> 0
     | [x] -> 0
-    | x0::x1::xs -> List.nth (List.nth graph x0) x1 + path_length (x1::xs)
+    | x0::x1::xs -> Array.get (Array.get graph x0) x1 + path_length (x1::xs)
 
 let travelling_salesman g =
     let paths = generate_paths g in
