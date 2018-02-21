@@ -1,5 +1,5 @@
 # Edit this for your own project dependencies
-OPAM_DEPENDS="core_bench jbuilder core"
+OPAM_DEPENDS="core_bench jbuilder core incremental"
 	 
 # echo "yes" | sudo add-apt-repository ppa:avsm/ppa
 

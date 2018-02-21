@@ -1,13 +1,15 @@
-(* let graph = [[0;3;5;3;4];
-             [2;0;4;1;1];
-             [4;6;0;2;2];
-             [2;3;7;0;3];
-             [8;2;4;1;0]]
+(* let graph = [0;9;2;1;8;4;7];
+6;0;1;5;2;8;7];
+6;1;0;6;8;4;4];
+2;3;3;0;4;3;8];
+2;4;6;5;0;4;2];
+8;1;1;9;8;0;6];
+1;1;7;9;2;1;0];]
              *)
 let generate_graph ~range n = 
         let open Core_kernel in
-        List.to_array @@ List.init n (fun i -> List.to_array @@ List.init n (fun j -> if j = i then 0 else Random.int range))
-let graph = generate_graph 8 10
+        List.to_array @@ List.init n (fun i -> List.to_array @@ List.init n (fun j -> if j = i then 0 else 1 + (Random.int range)))
+let graph = generate_graph ~range:10 8
 let add_traffic l amount =
     (* Leave distance to itself unchanged and add random amount to other connections *)
     List.map (fun x -> if x = 0 then x else x + Random.int amount) l
