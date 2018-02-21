@@ -1,5 +1,5 @@
 open Incremental_lib
-open Memoize
+open Memoize_irmin
 
 module Inc = Incremental.Make ()
 module Var = Inc.Var

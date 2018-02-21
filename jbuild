@@ -1,6 +1,6 @@
 (executable
  ((name evaluate)
-  (libraries (core_kernel core_bench incremental irmin))
+  (libraries (core_kernel core_bench incremental ezirmin))
 ))
 
 
