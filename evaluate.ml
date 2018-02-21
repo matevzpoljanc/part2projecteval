@@ -21,11 +21,11 @@ let () =
     Inc.stabilize ();
     Merkle_tree_inc.eval (fun () -> merkle_tree (m_tree) ()) ()
 *)
-(* 
+
     let args = [2;4;6;8] in
-    (* Bench.bench [benchmark_normal ~args:args; benchmark_incremental ~args:args]; *)
-    print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman.travelling_salesman Travelling_salesman.graph;
+    let open Travelling_salesman_incremental in
+    (* Bench.bench [benchmark_normal ~args:args; benchmark_incremental ~args:args]; 
+    print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman.travelling_salesman Travelling_salesman.graph;*)
     print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman_incremental.result ();
     Travelling_salesman_incremental.Var.set Travelling_salesman_incremental.number_of_nodes_v 7;
     print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman_incremental.result ();
-*)

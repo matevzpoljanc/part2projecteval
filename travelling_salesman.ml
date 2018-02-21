@@ -31,17 +31,17 @@ let generate_paths g =
     let open Core_kernel in
     permutations @@ List.range 0 @@ Array.length g
 
-let rec path_length = function
+let rec path_length graph = function
     | [] -> 0
     | [x] -> 0
-    | x0::x1::xs -> Array.get (Array.get graph x0) x1 + path_length (x1::xs)
+    | x0::x1::xs -> Array.get (Array.get graph x0) x1 + path_length graph (x1::xs)
 
 let travelling_salesman g =
     let paths = generate_paths g in
     let (_, shortest_path) = 
         List.fold_left 
             (fun (x,sp) p -> 
-                let p_length = path_length p in
+                let p_length = path_length g p in
                 if p_length < x then (p_length,p) else (x,sp))
             ((Int32.to_int Int32.max_int), []) 
             paths in
