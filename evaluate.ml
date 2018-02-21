@@ -18,21 +18,22 @@ let running_time n =
     print_endline @@ Travelling_salesman.string_of_int_list @@ result (); print_endline (string_of_float (Sys.time () -. start_t))
 
 
-let () = 
-(* 
-    let open Merkle_tree_inc in
-    let vlist = var_list [1;2;3;4;5;6;7;8] in
-    let m_tree =  merkle_tree_from_list vlist in
-    Merkle_tree_inc.eval (fun () -> merkle_tree (m_tree) ()) ();
-    Var.set (List.nth_exn vlist 0) (Leaf (9, hash 9));
-    Inc.stabilize ();
-    Merkle_tree_inc.eval (fun () -> merkle_tree (m_tree) ()) ()
-*)
-    (* ignore @@ List.map ~f:running_time [6;7;8;9]; *)
-    let args = [2;4;6;8] in
-    let open Travelling_salesman_incremental in
-    Bench.bench [benchmark_normal ~args:args; benchmark_incremental ~args:args]
-    (* print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman.travelling_salesman Travelling_salesman.graph;
-    print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman_incremental.result ();
-    Travelling_salesman_incremental.Var.set Travelling_salesman_incremental.number_of_nodes_v 7;
-    print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman_incremental.result (); *)
+
+let () =
+    let test_travel_sls = true in
+    let test_merkle_tree = false in
+    if test_merkle_tree then
+        let open Merkle_tree_inc in
+        let vlist = var_list [1;2;3;4;5;6;7;8] in
+        let m_tree =  merkle_tree_from_list vlist in
+        Merkle_tree_inc.eval (fun () -> merkle_tree (m_tree) ()) ();
+        Var.set (List.nth_exn vlist 0) (Leaf (9, hash 9));
+        Inc.stabilize ();
+        Merkle_tree_inc.eval (fun () -> merkle_tree (m_tree) ()) ()
+    else 
+    if test_travel_sls then
+        let args = [2;4;6;8] in
+        let open Travelling_salesman_incremental in
+        Bench.bench [benchmark_normal ~args:args; benchmark_incremental ~args:args]
+    else
+        ()
