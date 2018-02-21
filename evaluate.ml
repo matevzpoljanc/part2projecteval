@@ -9,7 +9,14 @@ let benchmark_normal =
 let benchmark_incremental = 
     let open Travelling_salesman_incremental in 
     Bench.Test.create_indexed ~name:"Trav_sls incremental"
-                        (fun n -> Staged.stage @@ fun () -> Var.set number_of_nodes_v n; ignore @@ result ())
+                        (fun n -> Staged.stage @@ fun () -> Var.set number_of_nodes_v n; increment (); ignore @@ result ())
+
+let running_time n =
+    let open Travelling_salesman_incremental in
+    let start_t = Sys.time () in
+    Var.set number_of_nodes_v n;
+    print_endline @@ Travelling_salesman.string_of_int_list @@ result (); print_endline (string_of_float (Sys.time () -. start_t))
+
 
 let () = 
 (* 
@@ -21,11 +28,11 @@ let () =
     Inc.stabilize ();
     Merkle_tree_inc.eval (fun () -> merkle_tree (m_tree) ()) ()
 *)
-
+    (* ignore @@ List.map ~f:running_time [6;7;8;9]; *)
     let args = [2;4;6;8] in
     let open Travelling_salesman_incremental in
-    (* Bench.bench [benchmark_normal ~args:args; benchmark_incremental ~args:args]; 
-    print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman.travelling_salesman Travelling_salesman.graph;*)
+    Bench.bench [benchmark_normal ~args:args; benchmark_incremental ~args:args]
+    (* print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman.travelling_salesman Travelling_salesman.graph;
     print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman_incremental.result ();
     Travelling_salesman_incremental.Var.set Travelling_salesman_incremental.number_of_nodes_v 7;
-    print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman_incremental.result ();
+    print_endline @@ Travelling_salesman.string_of_int_list @@ Travelling_salesman_incremental.result (); *)
