@@ -1,13 +1,15 @@
-(* let graph = [[0;3;5;3;4];
-             [2;0;4;1;1];
-             [4;6;0;2;2];
-             [2;3;7;0;3];
-             [8;2;4;1;0]]
+(* let graph = [0;9;2;1;8;4;7];
+6;0;1;5;2;8;7];
+6;1;0;6;8;4;4];
+2;3;3;0;4;3;8];
+2;4;6;5;0;4;2];
+8;1;1;9;8;0;6];
+1;1;7;9;2;1;0];]
              *)
 let generate_graph ~range n = 
         let open Core_kernel in
-        List.to_list @@ List.init n (fun i -> List.to_list @@ List.init n (fun j -> if j = i then 0 else Random.int range))
-let graph = generate_graph 8 10
+        List.to_array @@ List.init n (fun i -> List.to_array @@ List.init n (fun j -> if j = i then 0 else 1 + (Random.int range)))
+let graph = generate_graph ~range:10 8
 let add_traffic l amount =
     (* Leave distance to itself unchanged and add random amount to other connections *)
     List.map (fun x -> if x = 0 then x else x + Random.int amount) l
@@ -27,19 +29,19 @@ let rec permutations = function
     
 let generate_paths g =
     let open Core_kernel in
-    permutations @@ List.range 0 @@ List.length g
+    permutations @@ List.range 0 @@ Array.length g
 
-let rec path_length = function
+let rec path_length graph = function
     | [] -> 0
     | [x] -> 0
-    | x0::x1::xs -> List.nth (List.nth graph x0) x1 + path_length (x1::xs)
+    | x0::x1::xs -> Array.get (Array.get graph x0) x1 + path_length graph (x1::xs)
 
 let travelling_salesman g =
     let paths = generate_paths g in
     let (_, shortest_path) = 
         List.fold_left 
             (fun (x,sp) p -> 
-                let p_length = path_length p in
+                let p_length = path_length g p in
                 if p_length < x then (p_length,p) else (x,sp))
             ((Int32.to_int Int32.max_int), []) 
             paths in
