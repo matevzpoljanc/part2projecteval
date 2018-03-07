@@ -17,5 +17,10 @@ opam install ${OPAM_DEPENDS}
 eval `opam config env`
 
 #ocamlfind list
+git clone https://github.com/matevzpoljanc/RememberMe.git
 
+cd RememberMe
+make install
+
+cd ..
 make
