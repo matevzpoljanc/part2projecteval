@@ -20,6 +20,7 @@ eval `opam config env`
 git clone https://github.com/matevzpoljanc/RememberMe.git
 
 cd RememberMe
+make
 make install
 
 cd ..
