@@ -24,14 +24,14 @@ for line in range(len(raw_data)):
 
 means = [el[0] * 10**6 for el in parsed_data]
 st_dev = [el[1] * 10**6 for el in parsed_data]
-iterations = [100*i for i in range(1,11)]
+iterations = list(range(1,11))
 
 plt.errorbar(iterations, means[:10], yerr=st_dev[:10], fmt="o-", label="ReactiveCaml")
 plt.errorbar(iterations, means[10:20], yerr=st_dev[10:20], fmt="o-", label="Incremental")
 plt.title("Running time in relation to number of changes in x0 with result observed on every data change")
 plt.grid(True, linestyle='-.')
 plt.xlabel("Number of data changes")
-plt.ylabel("Total running time (ms)")
+plt.ylabel("Total running time (µs)")
 plt.legend()
 plt.show()
 
@@ -40,7 +40,7 @@ plt.plot(iterations, means[20:], "o-", label="Incremental")
 plt.title("Running time in relation to number of changes in x0 with result observed after all data changes")
 plt.grid(True, linestyle='-.')
 plt.xlabel("Number of data changes")
-plt.ylabel("Total running time (ms)")
+plt.ylabel("Total running time (µs)")
 plt.legend()
 
 plt.show()

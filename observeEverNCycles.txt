@@ -1,0 +1,20 @@
+ReactiveCaml
+mean: 6.171e-05 stdev: 3.97157310512e-05 max: 0.000453 min: 5.4e-05
+mean: 5.581e-05 stdev: 1.89467622031e-06 max: 6.7e-05 min: 5.4e-05
+mean: 6.505e-05 stdev: 1.02132563887e-05 max: 0.000112 min: 5.5e-05
+mean: 6.224e-05 stdev: 6.24923429653e-06 max: 9.2e-05 min: 5.6e-05
+mean: 5.997e-05 stdev: 6.3475995622e-06 max: 8.1e-05 min: 5.4e-05
+mean: 6.079e-05 stdev: 5.73364164076e-06 max: 8.2e-05 min: 5.5e-05
+mean: 5.95e-05 stdev: 5.42627353203e-06 max: 0.0001 min: 5.6e-05
+mean: 5.698e-05 stdev: 1.36315142893e-06 max: 6.5e-05 min: 5.6e-05
+mean: 5.908e-05 stdev: 5.98428919519e-06 max: 8.5e-05 min: 5.4e-05
+Incremental
+mean: 0.00016701 stdev: 1.99091344956e-05 max: 0.000268 min: 0.000153
+mean: 8.974e-05 stdev: 4.68959734224e-06 max: 0.000116 min: 8.7e-05
+mean: 6.938e-05 stdev: 1.27910795937e-05 max: 0.000132 min: 6.3e-05
+mean: 5.957e-05 stdev: 6.71686404703e-06 max: 0.000101 min: 5.2e-05
+mean: 4.938e-05 stdev: 5.31394202057e-06 max: 8.5e-05 min: 4.6e-05
+mean: 4.444e-05 stdev: 5.45008571891e-06 max: 7.9e-05 min: 4.1e-05
+mean: 3.89e-05 stdev: 6.89019212176e-07 max: 4e-05 min: 3.8e-05
+mean: 4.021e-05 stdev: 4.36305656923e-06 max: 6.3e-05 min: 3.7e-05
+mean: 3.61e-05 stdev: 6.89019212178e-07 max: 3.7e-05 min: 3.5e-05
