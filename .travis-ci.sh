@@ -1,6 +1,5 @@
 # Edit this for your own project dependencies
-OPAM_DEPENDS="core_bench jbuilder core incremental ezirmin"
-	 
+OPAM_DEPENDS="core_bench incremental opam-installer jbuilder=1.0+beta17 re=1.7.1 cppo=1.6.2 ounit core ezirmin"
 # echo "yes" | sudo add-apt-repository ppa:avsm/ppa
 
 wget https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh -O - | sh -s /usr/local/bin
