@@ -24,4 +24,13 @@ make
 make install
 
 cd ..
+
+git clone https://github.com/matevzpoljanc/ReactiveCaml.git
+
+cd ReactiveCaml
+make
+make install
+
+cd ..
+
 make
