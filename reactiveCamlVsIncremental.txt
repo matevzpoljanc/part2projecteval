@@ -1,0 +1,33 @@
+ReactiveCaml
+mean: 7.15e-06 stdev: 5.20475e-09 max: 7.8e-05 min: 5e-06
+mean: 1.309e-05 stdev: 3.21419e-09 max: 5.8e-05 min: 1e-05
+mean: 1.683e-05 stdev: 4.9011e-10 max: 3.4e-05 min: 1.5e-05
+mean: 2.169e-05 stdev: 1.9739e-10 max: 3.1e-05 min: 2e-05
+mean: 2.664e-05 stdev: 9.504e-11 max: 3.1e-05 min: 2.5e-05
+mean: 3.247e-05 stdev: 1.1491e-10 max: 3.8e-05 min: 3.1e-05
+mean: 3.935e-05 stdev: 2.13475e-09 max: 6.5e-05 min: 3.7e-05
+mean: 4.387e-05 stdev: 2.6931e-10 max: 5.5e-05 min: 4.2e-05
+mean: 5.038e-05 stdev: 2.90556e-09 max: 8.4e-05 min: 4.7e-05
+mean: 5.589e-05 stdev: 3.34379e-09 max: 9.6e-05 min: 5.3e-05
+Inc observe every cycle
+mean: 1.552e-05 stdev: 6.3296e-10 max: 4e-05 min: 1.4e-05
+mean: 2.927e-05 stdev: 1.6371e-10 max: 3.9e-05 min: 2.8e-05
+mean: 4.356e-05 stdev: 2.66864e-09 max: 8.4e-05 min: 4.2e-05
+mean: 5.716e-05 stdev: 3.3744e-10 max: 7.1e-05 min: 5.6e-05
+mean: 7.042e-05 stdev: 3.036e-11 max: 7.2e-05 min: 6.9e-05
+mean: 8.509e-05 stdev: 8.9019e-10 max: 9.9e-05 min: 8.3e-05
+mean: 9.852e-05 stdev: 3.7896e-10 max: 0.000112 min: 9.7e-05
+mean: 0.00011353 stdev: 1.66491e-09 max: 0.000139 min: 0.000111
+mean: 0.00013253 stdev: 1.054891e-08 max: 0.000179 min: 0.000125
+mean: 0.00014381 stdev: 7.06739e-09 max: 0.000179 min: 0.000139
+Inc observe at the end
+mean: 1.76e-06 stdev: 4.824e-11 max: 3e-06 min: 9.99999999973e-07
+mean: 2.63e-06 stdev: 5.53099999999e-11 max: 5.00000000001e-06 min: 1.99999999997e-06
+mean: 3.32e-06 stdev: 3.37599999999e-11 max: 6.00000000001e-06 min: 2e-06
+mean: 4.12e-06 stdev: 4.45599999998e-11 max: 6.00000000001e-06 min: 2.99999999998e-06
+mean: 4.8e-06 stdev: 4.8e-11 max: 6.00000000001e-06 min: 3.99999999998e-06
+mean: 6.45e-06 stdev: 3.54749999999e-10 max: 1.6e-05 min: 4.99999999998e-06
+mean: 6.41e-06 stdev: 1.2219e-10 max: 1.6e-05 min: 5.00000000001e-06
+mean: 7.11e-06 stdev: 3.979e-11 max: 8.00000000001e-06 min: 5.99999999998e-06
+mean: 7.89e-06 stdev: 3.979e-11 max: 9.00000000001e-06 min: 6.99999999998e-06
+mean: 8.67e-06 stdev: 1.1011e-10 max: 1.7e-05 min: 7.99999999995e-06

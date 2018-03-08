@@ -1,5 +1,5 @@
 open Incremental_lib
-open Memoize
+open RememberMe
 
 module Inc = Incremental.Make ()
 module Var = Inc.Var
@@ -21,11 +21,11 @@ let print_graph graph_inc =
 
 let generate_paths g =
     let open Core_kernel in
-    (memoize Travelling_salesman.permutations) @@ (memoize2 List.range) 0 @@ Array.length g
+    (memoize GlobalHashTbl Travelling_salesman.permutations) @@ (memoize2 GlobalHashTbl List.range) 0 @@ Array.length g
 let generate_paths graph_inc = Inc.map graph_inc ~f:(generate_paths) 
 
 let path_length graph path = Travelling_salesman.path_length graph path
-let travelling_salesman_v graph_inc paths = Inc.map2 graph_inc paths ~f:(memoize2 @@ fun g p -> List.fold_left 
+let travelling_salesman_v graph_inc paths = Inc.map2 graph_inc paths ~f:(memoize2 GlobalHashTbl @@ fun g p -> List.fold_left 
             (fun (x,sp) p -> 
                 let p_length = path_length g p in
                 if p_length < x then (p_length,p) else (x,sp))  (* function to fold *) 
