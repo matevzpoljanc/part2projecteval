@@ -1,8 +1,6 @@
 open Incremental_lib
 open ReactiveCaml
 
-type backend = ReactiveCaml | Incremental
-
 module Inc = Incremental.Make ()
 module Var = Inc.Var
 
