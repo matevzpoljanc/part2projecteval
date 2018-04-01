@@ -1,0 +1,368 @@
+Test overhead for one call with varying number of functions
+Number of functions: 0
+Memory usage: 43
+Memory usage: 43
+Number of functions: 5
+Memory usage: 639
+Memory usage: 119
+Number of functions: 10
+Memory usage: 1384
+Memory usage: 214
+Number of functions: 15
+Memory usage: 2129
+Memory usage: 309
+Number of functions: 20
+Memory usage: 2874
+Memory usage: 404
+Number of functions: 25
+Memory usage: 3619
+Memory usage: 499
+Number of functions: 30
+Memory usage: 4364
+Memory usage: 594
+Number of functions: 35
+Memory usage: 5109
+Memory usage: 689
+Number of functions: 40
+Memory usage: 5854
+Memory usage: 784
+Number of functions: 45
+Memory usage: 6599
+Memory usage: 879
+Number of functions: 50
+Memory usage: 7344
+Memory usage: 974
+Number of functions: 55
+Memory usage: 8089
+Memory usage: 1069
+Number of functions: 60
+Memory usage: 8834
+Memory usage: 1164
+Number of functions: 65
+Memory usage: 9579
+Memory usage: 1259
+Number of functions: 70
+Memory usage: 10324
+Memory usage: 1354
+Number of functions: 75
+Memory usage: 11069
+Memory usage: 1452
+Number of functions: 80
+Memory usage: 11814
+Memory usage: 1547
+Number of functions: 85
+Memory usage: 12559
+Memory usage: 1639
+Number of functions: 90
+Memory usage: 13304
+Memory usage: 1737
+Number of functions: 95
+Memory usage: 14049
+Memory usage: 1829
+Number of functions: 100
+Memory usage: 14794
+Memory usage: 1927
+Test overhead for one function with varying number of calls
+Number of calls: 0
+Memory usage: 182
+Memory usage: 44
+Number of calls: 100
+Memory usage: 1569
+Memory usage: 2150
+Number of calls: 200
+Memory usage: 3680
+Memory usage: 4247
+Number of calls: 300
+Memory usage: 6527
+Memory usage: 6356
+Number of calls: 400
+Memory usage: 7929
+Memory usage: 8456
+Number of calls: 500
+Memory usage: 9340
+Memory usage: 10568
+Number of calls: 600
+Memory usage: 13569
+Memory usage: 12674
+Number of calls: 700
+Memory usage: 14977
+Memory usage: 14789
+Number of calls: 800
+Memory usage: 16394
+Memory usage: 16904
+Number of calls: 900
+Memory usage: 17823
+Memory usage: 19022
+Number of calls: 1000
+Memory usage: 19258
+Memory usage: 21185
+Number of calls: 1100
+Memory usage: 26320
+Memory usage: 23363
+Number of calls: 1200
+Memory usage: 27740
+Memory usage: 25460
+Number of calls: 1300
+Memory usage: 29157
+Memory usage: 27566
+Number of calls: 1400
+Memory usage: 30556
+Memory usage: 29765
+Number of calls: 1500
+Memory usage: 31967
+Memory usage: 31937
+Number of calls: 1600
+Memory usage: 33366
+Memory usage: 34127
+Number of calls: 1700
+Memory usage: 34777
+Memory usage: 36299
+Number of calls: 1800
+Memory usage: 36206
+Memory usage: 38537
+Number of calls: 1900
+Memory usage: 37641
+Memory usage: 40580
+Number of calls: 2000
+Memory usage: 39073
+Memory usage: 42848
+Number of calls: 2100
+Memory usage: 51897
+Memory usage: 45101
+Number of calls: 2200
+Memory usage: 53293
+Memory usage: 47312
+Number of calls: 2300
+Memory usage: 54683
+Memory usage: 49508
+Number of calls: 2400
+Memory usage: 56094
+Memory usage: 51752
+Number of calls: 2500
+Memory usage: 57499
+Memory usage: 53942
+Number of calls: 2600
+Memory usage: 58922
+Memory usage: 56366
+Number of calls: 2700
+Memory usage: 60336
+Memory usage: 58511
+Number of calls: 2800
+Memory usage: 61750
+Memory usage: 60704
+Number of calls: 2900
+Memory usage: 63170
+Memory usage: 62975
+Number of calls: 3000
+Memory usage: 64575
+Memory usage: 65327
+Number of calls: 3100
+Memory usage: 65968
+Memory usage: 67595
+Number of calls: 3200
+Memory usage: 67364
+Memory usage: 69893
+Number of calls: 3300
+Memory usage: 68790
+Memory usage: 72212
+Number of calls: 3400
+Memory usage: 70222
+Memory usage: 74444
+Number of calls: 3500
+Memory usage: 71636
+Memory usage: 76805
+Number of calls: 3600
+Memory usage: 73080
+Memory usage: 79004
+Number of calls: 3700
+Memory usage: 74500
+Memory usage: 81344
+Number of calls: 3800
+Memory usage: 75929
+Memory usage: 83603
+Number of calls: 3900
+Memory usage: 77355
+Memory usage: 86081
+Number of calls: 4000
+Memory usage: 78775
+Memory usage: 88382
+Number of calls: 4100
+Memory usage: 102952
+Memory usage: 90605
+Number of calls: 4200
+Memory usage: 104339
+Memory usage: 92963
+Number of calls: 4300
+Memory usage: 105741
+Memory usage: 95201
+Number of calls: 4400
+Memory usage: 107143
+Memory usage: 97592
+Number of calls: 4500
+Memory usage: 108527
+Memory usage: 99830
+Number of calls: 4600
+Memory usage: 109953
+Memory usage: 102182
+Number of calls: 4700
+Memory usage: 111361
+Memory usage: 104414
+Number of calls: 4800
+Memory usage: 112751
+Memory usage: 106733
+Number of calls: 4900
+Memory usage: 114168
+Memory usage: 109181
+Number of calls: 5000
+Memory usage: 115585
+Memory usage: 111344
+Number of calls: 5100
+Memory usage: 116993
+Memory usage: 113681
+Number of calls: 5200
+Memory usage: 118401
+Memory usage: 116105
+Number of calls: 5300
+Memory usage: 119812
+Memory usage: 118418
+Number of calls: 5400
+Memory usage: 121238
+Memory usage: 120743
+Number of calls: 5500
+Memory usage: 122646
+Memory usage: 123071
+Number of calls: 5600
+Memory usage: 124063
+Memory usage: 125066
+Number of calls: 5700
+Memory usage: 125471
+Memory usage: 127571
+Number of calls: 5800
+Memory usage: 126888
+Memory usage: 130106
+Number of calls: 5900
+Memory usage: 128296
+Memory usage: 132064
+Number of calls: 6000
+Memory usage: 129698
+Memory usage: 134444
+Number of calls: 6100
+Memory usage: 131115
+Memory usage: 136799
+Number of calls: 6200
+Memory usage: 132544
+Memory usage: 139223
+Number of calls: 6300
+Memory usage: 133949
+Memory usage: 141317
+Number of calls: 6400
+Memory usage: 135372
+Memory usage: 143621
+Number of calls: 6500
+Memory usage: 136768
+Memory usage: 145778
+Number of calls: 6600
+Memory usage: 138170
+Memory usage: 148205
+Number of calls: 6700
+Memory usage: 139593
+Memory usage: 150587
+Number of calls: 6800
+Memory usage: 141034
+Memory usage: 152594
+Number of calls: 6900
+Memory usage: 142457
+Memory usage: 155144
+Number of calls: 7000
+Memory usage: 143889
+Memory usage: 157226
+Number of calls: 7100
+Memory usage: 145303
+Memory usage: 159752
+Number of calls: 7200
+Memory usage: 146729
+Memory usage: 162035
+Number of calls: 7300
+Memory usage: 148174
+Memory usage: 163928
+Number of calls: 7400
+Memory usage: 149578
+Memory usage: 166451
+Number of calls: 7500
+Memory usage: 151016
+Memory usage: 168748
+Number of calls: 7600
+Memory usage: 152439
+Memory usage: 171079
+Number of calls: 7700
+Memory usage: 153833
+Memory usage: 173128
+Number of calls: 7800
+Memory usage: 155252
+Memory usage: 175453
+Number of calls: 7900
+Memory usage: 156675
+Memory usage: 177605
+Number of calls: 8000
+Memory usage: 158078
+Memory usage: 179856
+Number of calls: 8100
+Memory usage: 159515
+Memory usage: 182140
+Number of calls: 8200
+Memory usage: 206503
+Memory usage: 184467
+Number of calls: 8300
+Memory usage: 207896
+Memory usage: 186739
+Number of calls: 8400
+Memory usage: 209307
+Memory usage: 188866
+Number of calls: 8500
+Memory usage: 210698
+Memory usage: 191258
+Number of calls: 8600
+Memory usage: 212091
+Memory usage: 193460
+Number of calls: 8700
+Memory usage: 213487
+Memory usage: 195852
+Number of calls: 8800
+Memory usage: 214912
+Memory usage: 197946
+Number of calls: 8900
+Memory usage: 216323
+Memory usage: 200150
+Number of calls: 9000
+Memory usage: 217713
+Memory usage: 202288
+Number of calls: 9100
+Memory usage: 219109
+Memory usage: 204707
+Number of calls: 9200
+Memory usage: 220515
+Memory usage: 207091
+Number of calls: 9300
+Memory usage: 221910
+Memory usage: 209428
+Number of calls: 9400
+Memory usage: 223304
+Memory usage: 211564
+Number of calls: 9500
+Memory usage: 224712
+Memory usage: 214104
+Number of calls: 9600
+Memory usage: 226132
+Memory usage: 215863
+Number of calls: 9700
+Memory usage: 227533
+Memory usage: 218355
+Number of calls: 9800
+Memory usage: 228932
+Memory usage: 220637
+Number of calls: 9900
+Memory usage: 230316
+Memory usage: 222556
+Number of calls: 10000
+Memory usage: 231743
+Memory usage: 225095

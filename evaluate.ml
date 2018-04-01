@@ -26,13 +26,15 @@ let benchmark_function ~f ~args =
         average_run_time std_dev (List.map2_exn max_run_time min_run_time ~f:(fun x y -> (x,y)))
 
 let () =
+    Gc.tune ~major_heap_increment:(1_000_448 * 4) ();
     let test_travel_sls = false in
     let test_merkle_tree = false in
     let test_memoization = false in
-    let test_rCamlVsInc = true in
+    let test_rCamlVsInc = false in
     let test_updateTime = false in
     let test_readEveryNUpdates = false in
     let test_breakRC = false in
+    let test_memoOverhead = true in
     if test_memoization then
         (* For some reason benchmarking doesn't work as the memory is wiped every time *)
         let args = [8] in
@@ -119,5 +121,10 @@ let () =
         print_endline @@ string_of_int @@ ReactiveCaml.read_exn n0;
         ReactiveCaml.set_value x 0;
         print_endline @@ string_of_int @@ ReactiveCaml.read_exn n0 
+    else
+        ();
+    if test_memoOverhead then
+        let open GlobalVsLocalHashtbl in
+        test1 (); test2 ()
     else
         ()
