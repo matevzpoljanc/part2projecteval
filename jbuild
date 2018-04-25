@@ -1,6 +1,6 @@
 (executable
  ((name evaluate)
-  (libraries (core_kernel core_bench incremental ezirmin rememberMe reactiveCaml))
+  (libraries (core_kernel incremental ezirmin rememberMe reactiveCaml))
 ))
 
 

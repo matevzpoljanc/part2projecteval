@@ -7,6 +7,13 @@ module Var = Inc.Var
 
 let node_count = ref 0
 let hash = Hashtbl.hash
+
+let rec compute_hash n = 
+    if n = 0 then
+        (Random.int 1000)
+    else
+        (ignore @@ Random.int 1000; compute_hash (n-1))
+(* let hash x = ignore x; compute_hash 100_000 *)
     (* let rec hashn n i h = if i = n then Hashtbl.hash h else hashn n (i+1) (Hashtbl.hash h) in
     hashn 100 1 (Hashtbl.hash a) *)
 

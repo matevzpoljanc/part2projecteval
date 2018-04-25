@@ -15,6 +15,7 @@ means = [el[0] * 10**3 for el in parsed_data]
 st_dev = [el[1] * 10**3 for el in parsed_data]
 nmb_nodes = [2**i for i in range(2,16)]
 
+
 fig, ax = plt.subplots()
 
 ax.set_xscale("log", nonposx='clip', basex=2)

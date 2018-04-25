@@ -1,29 +1,6 @@
-open Core_bench
+
 open Core_kernel
 open RememberMe
-
-let benchmark_normal = 
-    let open Travelling_salesman in 
-    Bench.Test.create_indexed ~name:"Travelling salesman" 
-                        (fun x -> Staged.stage @@ fun () -> ignore @@ travelling_salesman @@ generate_graph ~range:10 (x))
-
-let benchmark_incremental = 
-    let open Travelling_salesman_incremental in 
-    Bench.Test.create_indexed ~name:"Trav_sls inc"
-                        (fun n -> Staged.stage @@ fun () -> Var.set number_of_nodes_v n; increment (); ignore @@ result ())
-
-let benchmark_incremental_memo = 
-    let open Trvl_sls_inc_memo in
-    Bench.Test.create_indexed ~name:"Trav_sls inc memo"
-                        (fun n -> Staged.stage @@ fun () -> Var.set number_of_nodes_v n; increment (); ignore @@ result ())
-
-
-let benchmark_permutation = 
-    Bench.Test.create_indexed ~name:"Permutation" (fun n -> Staged.stage @@ fun () -> Travelling_salesman.permutations @@ List.range 0 n)
-
-let benchmark_permutation_memo = 
-    Bench.Test.create_indexed ~name:"Permutation memo" (fun n -> Staged.stage @@ fun () -> memoize GlobalHashTbl Travelling_salesman.permutations @@ List.range 0 n)
-
 let running_time n =
     let open Travelling_salesman_incremental in
     let start_t = Sys.time () in
@@ -35,7 +12,7 @@ let timeit f =
     ignore @@ f (); Sys.time () -. start_t
 
 let benchmark_function ~f ~args =
-    let number_of_iterations = 100 in
+    let number_of_iterations = 10000 in
     let test_scores =  List.map args ~f:(fun n -> List.init number_of_iterations ~f:(fun x -> timeit @@ fun () -> f n)) in (* Replicate the test multiple times *)
     let average_run_time = 
         List.map ~f:(fun x -> x /. float_of_int number_of_iterations) @@ (* Average results *)
@@ -49,16 +26,19 @@ let benchmark_function ~f ~args =
         average_run_time std_dev (List.map2_exn max_run_time min_run_time ~f:(fun x y -> (x,y)))
 
 let () =
+    Gc.tune ~major_heap_increment:(1_000_448 * 4) ();
     let test_travel_sls = false in
     let test_merkle_tree = false in
     let test_memoization = false in
     let test_rCamlVsInc = false in
-    let test_updateTime = true in
+    let test_updateTime = false in
     let test_readEveryNUpdates = false in
+    let test_breakRC = false in
+    let test_memoOverhead = false in
+    let test_IrminVsHash= true in
     if test_memoization then
         (* For some reason benchmarking doesn't work as the memory is wiped every time *)
         let args = [8] in
-        Bench.bench ~run_config:(Bench.Run_config.create ~fork_each_benchmark:false ()) [benchmark_permutation ~args:args; benchmark_permutation_memo ~args:args];
         benchmark_function ~f:Travelling_salesman.permutations ~args:(List.map args ~f:(fun n -> List.range 0 n));
         benchmark_function ~f:(memoize GlobalHashTbl Travelling_salesman.permutations) ~args:(List.map args ~f:(fun n -> List.range 0 n))
     else
@@ -87,7 +67,7 @@ let () =
     (* Update one variable 100, 200, ..., 1000 times and examine the performance *)
     if test_rCamlVsInc then
         let open RCamlVsInc in
-        let args = List.init 10 ~f:(fun x -> List.init (100*(x+1)) ~f:(fun _ -> Random.int 1000)) in
+        let args = List.init 10 ~f:(fun x -> List.init (100*(x+1)) ~f:(fun _ -> Random.int 1_000_000)) in
         print_endline "ReactiveCaml";
         benchmark_function ~f:(fun n -> List.iter n ~f:(ReactiveCaml.set_value x0)) ~args;
         print_endline "Inc observe every cycle";
@@ -101,7 +81,7 @@ let () =
         ();
     if test_updateTime then 
         let open Merkle_tree_inc in
-        let args = List.init 1 ~f:(fun _ -> List.init 1000 ~f:(fun _ -> Random.int 1000)) in
+        let args = List.init 1 ~f:(fun _ -> List.init 5 ~f:(fun _ -> Random.int 1_000_000)) in
         let tree_depth = List.range 2 16 in
         print_endline "Incremental";
         List.iter tree_depth ~f:(fun n ->
@@ -135,5 +115,22 @@ let () =
                         (Var.set x0_inc v; Inc.stabilize (); ignore @@ Inc.Observer.value_exn result_obs)
                     else
                         Var.set x0_inc v))
+    else
+        ();
+    if test_breakRC then
+        let open Break_RC in 
+        print_endline @@ string_of_int @@ ReactiveCaml.read_exn n0;
+        ReactiveCaml.set_value x 0;
+        print_endline @@ string_of_int @@ ReactiveCaml.read_exn n0 
+    else
+        ();
+    if test_memoOverhead then
+        let open GlobalVsLocalHashtbl in
+        test1 (); test2 ()
+    else
+        ();
+    if test_IrminVsHash then
+        let open HashTblVsIrmin in
+        test1 ()
     else
         ()
