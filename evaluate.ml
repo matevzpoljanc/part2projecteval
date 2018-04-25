@@ -34,7 +34,8 @@ let () =
     let test_updateTime = false in
     let test_readEveryNUpdates = false in
     let test_breakRC = false in
-    let test_memoOverhead = true in
+    let test_memoOverhead = false in
+    let test_IrminVsHash= true in
     if test_memoization then
         (* For some reason benchmarking doesn't work as the memory is wiped every time *)
         let args = [8] in
@@ -126,5 +127,10 @@ let () =
     if test_memoOverhead then
         let open GlobalVsLocalHashtbl in
         test1 (); test2 ()
+    else
+        ();
+    if test_IrminVsHash then
+        let open HashTblVsIrmin in
+        test1 ()
     else
         ()
