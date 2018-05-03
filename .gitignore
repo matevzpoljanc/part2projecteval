@@ -5,3 +5,7 @@ _build
 *.vscode
 db
 *.txt
+permutations
+mham*
+mtrvl*
+mboth*

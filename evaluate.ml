@@ -35,7 +35,8 @@ let () =
     let test_readEveryNUpdates = false in
     let test_breakRC = false in
     let test_memoOverhead = false in
-    let test_IrminVsHash= true in
+    let test_IrminVsHash= false in
+    let test_IrminFsBackend = true in
     if test_memoization then
         (* For some reason benchmarking doesn't work as the memory is wiped every time *)
         let args = [8] in
@@ -132,5 +133,20 @@ let () =
     if test_IrminVsHash then
         let open HashTblVsIrmin in
         test1 ()
+    else
+        ();
+    if test_IrminFsBackend then
+        let graph_size = Core.List.range 2 8 in
+        let config_roots = List.map graph_size ~f:(fun n -> let n_str = Int.to_string n in (n, "mham"^n_str, "mtrvl"^n_str, "mboth"^n_str)) in
+        List.iter config_roots 
+            ~f:(fun (n, ham, trvl, both) -> 
+                let ham_test = Hamiltonian_path.test1 ~n in
+                let trvl_test = Travelling_salesman.test1 ~n in
+                ham_test (Irmin_git.config ~root:ham ()); 
+                trvl_test (Irmin_git.config ~root:trvl ()); 
+                ham_test (Irmin_git.config ~root:both ()); 
+                trvl_test (Irmin_git.config ~root:both ())
+                )
+         
     else
         ()
