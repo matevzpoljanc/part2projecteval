@@ -1,6 +1,10 @@
 
 open Core_kernel
 open RememberMe
+
+let floatListToString = 
+    List.to_string ~f:(Float.to_string)
+
 let running_time n =
     let open Travelling_salesman_incremental in
     let start_t = Sys.time () in
@@ -12,7 +16,7 @@ let timeit f =
     ignore @@ f (); Sys.time () -. start_t
 
 let benchmark_function ~f ~args =
-    let number_of_iterations = 10000 in
+    let number_of_iterations = 10 in
     let test_scores =  List.map args ~f:(fun n -> List.init number_of_iterations ~f:(fun x -> timeit @@ fun () -> f n)) in (* Replicate the test multiple times *)
     let average_run_time = 
         List.map ~f:(fun x -> x /. float_of_int number_of_iterations) @@ (* Average results *)
@@ -23,7 +27,8 @@ let benchmark_function ~f ~args =
     let min_run_time =  List.map ~f:(fun x -> match x with | Some y -> y | None -> -1.0) @@ List.map test_scores ~f:(List.min_elt ~cmp:(fun x y -> if x>y then 1 else if x=y then 0 else -1)) in
     ignore @@ List.map3 
         ~f:(fun mean dev (max,min) -> print_endline @@ "mean: " ^ string_of_float mean ^ " stdev: " ^ string_of_float dev ^ " max: " ^ string_of_float max ^ " min: " ^ string_of_float min) 
-        average_run_time std_dev (List.map2_exn max_run_time min_run_time ~f:(fun x y -> (x,y)))
+        average_run_time std_dev (List.map2_exn max_run_time min_run_time ~f:(fun x y -> (x,y)));
+    List.iteri test_scores ~f:(fun n scores ->  Printf.printf "%d %s\n" (n+2) (floatListToString scores))
 
 let () =
     Gc.tune ~major_heap_increment:(1_000_448 * 4) ();
@@ -36,7 +41,8 @@ let () =
     let test_breakRC = false in
     let test_memoOverhead = false in
     let test_IrminVsHash= false in
-    let test_IrminFsBackend = true in
+    let test_IrminFsBackend = false in
+    let test_IrminFsOnly = true in
     if test_memoization then
         (* For some reason benchmarking doesn't work as the memory is wiped every time *)
         let args = [8] in
@@ -136,17 +142,30 @@ let () =
     else
         ();
     if test_IrminFsBackend then
-        let graph_size = Core.List.range 2 8 in
+        let graphs = 9 in
+        let graph_size = Core.List.range graphs (graphs+1) in
         let config_roots = List.map graph_size ~f:(fun n -> let n_str = Int.to_string n in (n, "mham"^n_str, "mtrvl"^n_str, "mboth"^n_str)) in
         List.iter config_roots 
             ~f:(fun (n, ham, trvl, both) -> 
                 let ham_test = Hamiltonian_path.test1 ~n in
                 let trvl_test = Travelling_salesman.test1 ~n in
                 ham_test (Irmin_git.config ~root:ham ()); 
-                trvl_test (Irmin_git.config ~root:trvl ()); 
+                (*trvl_test (Irmin_git.config ~root:both ()); 
                 ham_test (Irmin_git.config ~root:both ()); 
-                trvl_test (Irmin_git.config ~root:both ())
+                trvl_test (Irmin_git.config ~root:both ())*)
                 )
          
+    else
+        ();
+    if test_IrminFsOnly then
+        let open Travelling_salesman in
+        let args = List.init 7 ~f:(fun n -> generate_graph ~range:10 (n+2)) in
+        let config = Irmin_git.config ~root:"fs_only_test" () in
+        let memo_permutations = RememberMe.memoize (RememberMe.IrminFsOnly config) permutations in
+        let generatePaths_memo = (RememberMe.memoize2 (RememberMe.IrminFsOnly config) generate_paths) memo_permutations in
+        let shortestPath_memo = RememberMe.memoize2 (RememberMe.IrminFsOnly config) shortestPath in
+        benchmark_function ~f:(fun graph -> test2 ~graph generatePaths_memo shortestPath_memo) ~args;
+        Printf.printf "Run test again\n";
+        benchmark_function ~f:(fun graph -> test2 ~graph generatePaths_memo shortestPath_memo) ~args;
     else
         ()

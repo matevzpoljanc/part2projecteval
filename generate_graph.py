@@ -27,22 +27,31 @@ st_dev = [el[1] * 10**6 for el in parsed_data]
 
 iterations = list(map(lambda x: x*100,range(1,11)))
 
-plt.errorbar(iterations, means[:10], yerr=st_dev[:10], fmt="-x", label="ReactiveCaml", capsize=3, elinewidth=0.8, lw=0.8)
-plt.errorbar(iterations, means[10:20], yerr=st_dev[10:20], fmt="-x", label="Incremental", capsize=3, elinewidth=0.8, lw=0.8)
-plt.title("Running time in relation to number of changes in x0 with result observed on every data change")
-plt.grid(True, linestyle='-.')
-plt.xlabel("Number of data changes")
-plt.ylabel("Total running time (µs)")
-plt.legend()
-plt.show()
+fig1, ax1 = plt.subplots(figsize=(12, 7))
 
-plt.errorbar(iterations, means[:10], yerr=st_dev[:10], fmt="-x", label="ReactiveCaml", capsize=3, elinewidth=0.8, lw=0.8)
-plt.errorbar(iterations, means[20:], yerr=st_dev[20:], fmt="-x", label="Incremental", capsize=3, elinewidth=0.8, lw=0.8)
-plt.title("Running time in relation to number of changes in x0 with result observed after all data changes")
+ax1.errorbar(iterations, means[:10], yerr=st_dev[:10], fmt="-x", label="ReactiveCaml", capsize=3, elinewidth=1, lw=1)
+ax1.errorbar(iterations, means[10:20], yerr=st_dev[10:20], fmt="--o", label="Incremental", capsize=3, elinewidth=1, lw=1)
+plt.title("Running time in relation to number of changes in x0\nwith result observed on every data change\n", size="xx-large", weight="heavy")
 plt.grid(True, linestyle='-.')
-plt.xlabel("Number of data changes")
-plt.ylabel("Total running time (µs)")
-plt.legend()
+plt.xlabel("Number of data changes", size="x-large")
+plt.ylabel("Total running time (µs)", size="x-large")
+plt.legend(prop={'size':18})
 
-plt.show()
+fig1.savefig("graphs/runningTime_everyDataChange.png", dpi=300)
+
+# plt.show()
+
+fig2, ax2 = plt.subplots(figsize=(12, 7))
+
+ax2.errorbar(iterations, means[:10], yerr=st_dev[:10], fmt="-x", label="ReactiveCaml", capsize=3, elinewidth=1, lw=1)
+ax2.errorbar(iterations, means[20:], yerr=st_dev[20:], fmt="--o", label="Incremental", capsize=3, elinewidth=1, lw=1)
+plt.title("Running time in relation to number of changes in x0\nwith result observed after all data changes\n", size="xx-large", weight="heavy")
+plt.grid(True, linestyle='-.')
+plt.xlabel("Number of data changes", size="x-large")
+plt.ylabel("Total running time (µs)", size="x-large")
+plt.legend(prop={'size':18})
+
+fig2.savefig("graphs/runningTime_afterDataChanges.png", dpi=300)
+
+# plt.show()
 # print(means)

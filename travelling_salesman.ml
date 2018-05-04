@@ -6,11 +6,23 @@
 8;1;1;9;8;0;6];
 1;1;7;9;2;1;0];]
              *)
+
+let graph = [| 
+    [|0; 9; 7; 4; 3; 2; 4; 1|]; 
+    [|2; 0; 9; 7; 1; 5; 6; 8|]; 
+    [|7; 1; 0; 9; 5; 4; 1; 1|]; 
+    [|7; 9; 3; 0; 4; 7; 8; 1|]; 
+    [|8; 4; 7; 7; 0; 2; 7; 8|]; 
+    [|4; 8; 3; 2; 5; 0; 3; 3|]; 
+    [|3; 8; 2; 5; 4; 4; 0; 9|]; 
+    [|3; 9; 6; 5; 5; 7; 9; 0|]
+|]
+
 let generate_graph ~range n = 
         let open Core_kernel in
         List.to_array @@ List.init n (fun i -> List.to_array @@ List.init n (fun j -> if j = i then 0 else 1 + (Random.int range)))
 
-let graph = generate_graph ~range:10 8
+(*let graph = generate_graph ~range:10 8*)
 
 let add_traffic l amount =
     (* Leave distance to itself unchanged and add random amount to other connections *)
@@ -56,5 +68,21 @@ let test1 config ~n =
     let perm = RememberMe.memoize (RememberMe.IrminFs config) permutations in
     ignore @@ travelling_salesman (generate_graph ~range:4 n) perm
 
+let shortestPath graph paths =
+    let (_, shortest_path) = 
+        List.fold_left 
+            (fun (x,sp) p -> 
+                let p_length = path_length graph p in
+                if p_length < x then (p_length,p) else (x,sp))
+            ((Int32.to_int Int32.max_int), []) 
+            paths in
+    shortest_path
+
+let memoized_generatePaths ~config = (RememberMe.memoize (RememberMe.IrminFsOnly config) (generate_paths permutations))
+
+let travelling_salesman_FsOnlymemo g memoized_generatePaths shortestPath =
+    let paths = memoized_generatePaths g in
+    shortestPath g paths
 
 
+let test2 ~graph gpaths shtPath = ignore @@ travelling_salesman_FsOnlymemo graph gpaths shtPath

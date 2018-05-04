@@ -19,15 +19,18 @@ for line in range(len(raw_data)):
 		# parsed_data[test][2].append(int(raw_data[line+2].split()[-1]))
 
 # print(parsed_data[0])
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(12, 7))
 
 ax.set_yscale("log", nonposy='clip', basey=2)
-ax.errorbar(parsed_data[0], parsed_data[1], fmt="-x", label="In-memory Irmin", capsize=3, elinewidth=0.8, lw=0.8)
-ax.errorbar(parsed_data[0], parsed_data[2], fmt="-x", label="Global hash-table", capsize=3, elinewidth=0.8, lw=0.8)
+ax.errorbar(parsed_data[0], parsed_data[1], fmt="-x", label="In-memory Irmin", capsize=6, elinewidth=1, lw=1)
+ax.errorbar(parsed_data[0], parsed_data[2], fmt="--o", label="Global hash-table", capsize=6, elinewidth=1, lw=1)
 
-plt.title("Number of live words in relation to length of an argument list")
+plt.title("Number of live words in relation to length of an argument list\n", size="xx-large", weight="heavy")
 plt.grid(True, linestyle='-.')
-plt.xlabel("Length of an list")
-plt.ylabel("Number of live words")
-plt.legend()
-plt.show()
+plt.xlabel("Length of an list", size="x-large")
+plt.ylabel("Number of live words", size="x-large")
+plt.legend(prop={'size':18})
+
+fig.savefig("graphs/hashTblVsIrmin.png", dpi=300)
+
+# plt.show()
